@@ -1,0 +1,36 @@
+----------------------------------------------------
+-----Main configuration file for ServerExtended-----
+----------------------------------------------------
+----------------------------------------------------
+
+
+--Enabled Modules:
+
+Ranks = true
+--Allows players to be granted priveleges based on time and manual promotions by admins.
+
+TeleportRequest = true
+--Allows players to request permission to teleport to other players.
+
+Homes = true
+--Allows players to set homes and teleport back to them with configurable prices or consequences
+
+Warps = true
+--Allows players with permission to teleport to admin-specified places.
+
+CommandBlocks = false
+--Allows blocks to run commands automatically. [UNUSED]
+
+Economy = false
+--Basic economy system.
+
+Player_Extras = true
+--Small helper commands for players.
+
+Admin_Tools = true
+--Small helper commands for admins.
+
+--Mod Varaibles:
+
+Playerdata_Logstring = os.date("%x")..": "..os.date("%X")
+--Lua variable: used to add a timestamp to any changes in the playerdata files.

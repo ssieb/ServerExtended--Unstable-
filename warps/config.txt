@@ -1,0 +1,19 @@
+--ServerExtended Warps Module Configuration Options
+
+Cost_to_warp = false
+--Cost to teleport to warp. Possible values: false, item, currency
+
+	Warp_item = "default:mese_crystal"
+	--The item used if Cost_to_warp is set to item. Format: modname:itemname
+
+	Warp_item_amount = 1
+	--Amount of items to use if Cost_to_warp is set to item. Must be an integer
+	
+	Warp_currency_name = "dollars"
+	--Currency used if Cost_to_warp is set to currency.
+
+	Warp_currency_amount = 1
+	--Amount of currency taken if Cost_to_warp is set to currency.
+
+Warp_GUI = true
+--Use a GUI for warping, allows warping by clicking buttons after typing /warp, instead of having to type the warp name.

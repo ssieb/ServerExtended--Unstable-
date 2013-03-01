@@ -1,0 +1,22 @@
+--ServerExtended Economy Module Configuration Options
+
+UseItems = false
+--Use gold, iron, and bronze coins instead of virtual currency.
+
+	GoldValue = 10
+	--Value of a gold coin if using items.
+	
+	Ironvalue = 1
+	--Value of an iron coin if using items.
+
+	Bronzevalue = 0.1
+	--Value of a bronze coin if using items.
+
+Primary_currency_name = "Dollars"
+--Main currency name.
+
+Secondary_currency_name = "Cents"
+--Decimal currency name.
+
+StartingBalance = 100
+--Balance of new players
