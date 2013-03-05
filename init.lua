@@ -3,6 +3,7 @@ local path = minetest.get_modpath(minetest.get_current_modname())
 local version = "0.1"
 local enabled_mods = {}
 dofile(path.."/config.txt")
+dofile(path.."/api.lua")
 
 if Ranks == true then
 
@@ -31,13 +32,6 @@ if Warps == true then
 	table.insert(enabled_mods, "Warps Module Loaded")
 
 end
---Unused ATM
-if CommandBlocks == true then
-
-	dofile(path .."/commandblocks/commandblocks.lua")
-	table.insert(enabled_mods, "CommandBlocks Module Loaded")
-
-end
 
 if Economy == true then
 
@@ -60,7 +54,7 @@ if Admin_Tools == true then
 
 end
 
-if Gui_Module == true then
+if GUI == true then
 
 	dofile(path .."/gui/gui.lua")
 	table.insert(enabled_mods, "Gui Module Loaded")
@@ -84,27 +78,11 @@ minetest.register_privilege("se_tphr", "Permission to request other players to t
 minetest.register_privilege("se_warps", "Permission to use /warp.")
 
 minetest.register_on_joinplayer(function(player)
-local pname = player:get_player_name()
-	local f = io.open(path..'/playerdata/'..pname..'.txt');
-		if (f) then
-			f:close();
-			return
-		else
-			local f = io.open(path..'/playerdata/'..pname..'.txt','w');
-			file:close()
-		end
-end)
-
-minetest.register_on_newplayer(function(player)
-local pname = player:get_player_name()
-	local f = io.open(path..'/playerlist.txt');
-		if (f) then
-			f:close();
-			local file = io.open(path..'/playerlist.txt','a+');
-			file:write(pname..' = true\n')
-			return
-		else
-		print("[ServerExtended]: Critical Error: unable to locate playerlist file. (/mods/serverextended/playerlist.txt)")
-		file:close()
-		end
+	pname = player:get_player_name()
+	playerdata = load_player_data()
+	if playerdata[pname] == nil then
+		playerdata[pname] = {}
+		save_player_data()
+		playerdata = load_player_data()
+	end
 end)

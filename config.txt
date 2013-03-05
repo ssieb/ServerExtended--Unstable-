@@ -18,8 +18,8 @@ Homes = true
 Warps = true
 --Allows players with permission to teleport to admin-specified places.
 
-CommandBlocks = false
---Allows blocks to run commands automatically. [UNUSED]
+GUI = true
+--Player profile, setting, and other cool features, all in a user-friendly GUI.
 
 Economy = false
 --Basic economy system.
