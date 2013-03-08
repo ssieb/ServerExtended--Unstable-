@@ -1,0 +1,7 @@
+--ServerExtended Player Extras Module Configuration Options
+
+Allow_Suicide = true
+--Allow players to use the /suicide command to kill themselves.
+
+Allow_Messaging = true
+--Allow players to /m [name] to private message each other.

@@ -1,0 +1,38 @@
+--ServerExtended Ranks Module Configuration
+
+--Rank that will be automaticly set when players join.
+Default_Rank = "Players"
+
+
+
+--Rank List:
+
+
+--Format (DO NOT FORGET COMMAS):
+--[Rankname] = {
+--	privs = "privname1, privname2, etc..",
+--	ranklevel = [number (1 = lowest promote/demote level)
+--},
+
+Ranks = {
+
+	Admins = { 
+		privs = "shout, se_admin, se_player, se_tpr, se_tphr, se_homes, se_warps, se_clearinventory, se_clearinventory_admin interact, break, basic_privs, grant, fast, fly, ",
+		ranklevel = 3
+	
+	},
+
+
+	Players = { 
+		privs = "shout, se_homes, se_tpr, se_tphr, se_warps, interact, break, basic_privs, fast",
+		ranklevel = 2
+
+	},
+
+
+	Guests = { 
+		privs = "shout",
+		ranklevel = 1
+
+	},
+}

@@ -1,0 +1,3 @@
+--ServerExtended Admin Tools Module Configuration Options
+
+Welcome_String = "Welcome to [servername]"

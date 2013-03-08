@@ -1,0 +1,4 @@
+--ServerExtended GUI Module Configuration
+
+Show_On_Start = true
+--If players will see their profile/server page when they join
