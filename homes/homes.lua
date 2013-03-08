@@ -1,12 +1,16 @@
 --Set path variables.
 local path = minetest.get_modpath(minetest.get_current_modname()) .. "/playerdata/"
 local modpath = minetest.get_modpath(minetest.get_current_modname())
-
+local api = minetest.get_modpath(minetest.get_current_modname()) .. "/api.lua"
 --Load configuration
 dofile(modpath..'/homes/config.txt')
+dofile(api)
+playerdata = load_player_data()
 
 --Sethome checker function
 local function costsethome(name, param)
+playerdata = load_player_data()
+
 		local player = minetest.env:get_player_by_name(name)
 		
 		--Check if Cost_to_sethome is enabled in config.
@@ -37,7 +41,6 @@ local function costsethome(name, param)
 					if playername:get_inventory():contains_item("main", itemstack) then
 						playername:get_inventory():remove_item("main", itemstack)
 						sethome(name, param)
-						print("success")
 					else
 					
 					--If the player does not have the needed item, tell them that and do not sethome.
@@ -54,6 +57,7 @@ local function costsethome(name, param)
 end
 
 local function costhome(name, param)
+playerdata = load_player_data()
 
 		local player = minetest.env:get_player_by_name(name)
 
@@ -108,19 +112,18 @@ function sethome(name, param)
 		local msg = 'Home set!'
 		
 		--Check for playerdata file, if so, write the home position.
-		local file = io.open(path..'/'..name..'.txt','a+')
-			if file ~= nil then
-				print('Player '..name..'has set a home.')
-				file:write("homex = "..tostring(ppos.x).." --[Changed at: "..Playerdata_Logstring.." by "..name.."]\n")
-				file:write("homey = "..tostring(ppos.y).." --[Changed at: "..Playerdata_Logstring.." by "..name.."]\n")
-				file:write("homez = "..tostring(ppos.z).." --[Changed at: "..Playerdata_Logstring.." by "..name.."]\n")
-				file:close()
+		playerdata = load_player_data()
+			if playerdata[name] then
+				print('Player '..name..' has set a home at '.. minetest.pos_to_string(ppos)..'.')
+				playerdata[name]['home'] = minetest.pos_to_string(ppos)
+				save_player_data()
+				playerdata = load_player_data()
 				minetest.chat_send_player(name, msg)
 			else
 			
 				--If not, notify player and admin.
-				print("Error: Unable to locate playerdata folder.")
-				minetest.chat_send_player(name, 'Unable to find playerdata folder, please contact an admin')
+				print("Error: Unable to locate playerdata file.")
+				minetest.chat_send_player(name, 'Unable to find playerdata file, please contact an admin')
 			end
 end
 
@@ -129,15 +132,15 @@ function home(name, param)
 
 	--Register playername and load playerdata file.
 	local player = minetest.env:get_player_by_name(name)
-	dofile(path.."/"..name..'.txt')
-	
+	playerdata = load_player_data()
 	--Check to ensure home is set, if so, set the player's position.
-	if homex ~= nil then
+	if playerdata[name]['home'] then
+		local ppos = minetest.string_to_pos(playerdata[name]['home'])
 		minetest.chat_send_player(name, 'Teleporting to home...')
-		player:setpos({x=homex,y=homey,z=homez})
+		player:setpos(ppos)
 	else
 		--If not, send a message to the player and return.
-		minetest.chat_send_player(name, 'You have not set a home.')
+		minetest.chat_send_player(name, 'You have not set a home. Set a home with /sethome.')
 		return
 	end
 end

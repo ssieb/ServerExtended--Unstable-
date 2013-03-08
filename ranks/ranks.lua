@@ -27,7 +27,7 @@ if Ranks[rank] then
 			return false;
 		end
 	else 
-	minetest.chat_send_player(name, rank.." does not exist.")
+	minetest.chat_send_player(pname, rank.." does not exist.")
 	end
 end
 
@@ -74,6 +74,8 @@ minetest.register_chatcommand('setrank',{
 		minetest.chat_send_player(name, "Please enter a name and rank!")
 	elseif not playerdata[pname] then
 		minetest.chat_send_player(name, "Invalid player name")
+	elseif not Ranks[rank] then
+		minetest.chat_send_player(name, "There is no rank by that name. Type /ranks to see all available ranks.")
 	else
 		set_rank(pname, rankname)
 		set_privs(pname, rankname)
