@@ -87,3 +87,30 @@ minetest.register_on_joinplayer(function(player)
 		playerdata = load_player_data()
 	end
 end)
+
+minetest.register_on_newplayer(function(player)
+	pname = player:get_player_name()
+	minetest.chat_send_all(pname, Welcome_String..pname..',')
+end)
+
+if Use_Announcer == true then
+local int = 1
+	function announce()
+		Current_String = string.split(Announcer_Messages, ",")
+		print(dump(Current_String))
+		minetest.after(Announcer_Delay_Time, function()
+			if Current_String[int] then
+				minetest.chat_send_all(Current_String[int])
+				print(Current_String[int])
+				print(int)
+				int = int+1
+				announce()
+			else
+				int = 1
+				announce()
+			end
+		end)
+	end
+		announce()
+
+end

@@ -18,11 +18,13 @@ Homes = true
 Warps = true
 --Allows players with permission to teleport to admin-specified places.
 
-GUI = true
---Player profile, setting, and other cool features, all in a user-friendly GUI.
+GUI = false
+--Player profile, setting, and other cool features, all in a user-friendly GUI. 
+--WIP-- Keep disabled for now unless you are helping test.
 
 Economy = false
---Basic economy system.
+--Basic economy system. 
+--WIP-- Keep disabled for now unless you are helping test.
 
 Player_Extras = true
 --Small helper commands for players.
@@ -30,7 +32,23 @@ Player_Extras = true
 Admin_Tools = true
 --Small helper commands for admins.
 
---Mod Varaibles:
 
-Playerdata_Logstring = os.date("%x")..": "..os.date("%X")
---Lua variable: used to add a timestamp to any changes in the playerdata files.
+--Other options:
+
+Welcome_String = "Welcome to [servername],"
+--String shown to people on the server when a new player joins the game.
+
+Use_Announcer = true
+--Use a timed announcer to show messages to all players.
+
+	--Announcer options (If Use_Announcer = true)
+	
+	Announcer_Delay_Time = "2"
+	--Delay between announcing messages
+
+	Announcer_Messages = "[ServerExtended] Welcome to [SERVERNAME], This is the default Announcer Loop, Ask your server owner to change these., Announcer_Message in config.txt."
+	--Messages for the announcer to cycle through. Seperate messages by commas.
+
+
+--Module specific configuration options can be found in the module folders /config.txt.
+--Thanks for using ServerExtended!
