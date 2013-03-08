@@ -80,8 +80,9 @@ minetest.register_privilege("se_warps", "Permission to use /warp.")
 minetest.register_on_joinplayer(function(player)
 	pname = player:get_player_name()
 	playerdata = load_player_data()
-	if playerdata[pname] == nil then
+	if not playerdata[pname] then
 		playerdata[pname] = {}
+		playerdata[pname]['isPlayer'] = true
 		save_player_data()
 		playerdata = load_player_data()
 	end
