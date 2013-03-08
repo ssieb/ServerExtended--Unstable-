@@ -1,5 +1,4 @@
 --Set path variables.
-local filespath = minetest.get_modpath(minetest.get_current_modname()) .. "/playerdata"
 local configpath = minetest.get_modpath(minetest.get_current_modname()) .. "/ranks/config.txt"
 local api = minetest.get_modpath(minetest.get_current_modname()) .. "/api.lua"
 dofile(api)

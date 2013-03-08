@@ -1,5 +1,4 @@
 --Set path variables.
-local path = minetest.get_modpath(minetest.get_current_modname()) .. "/playerdata/"
 local modpath = minetest.get_modpath(minetest.get_current_modname())
 local api = minetest.get_modpath(minetest.get_current_modname()) .. "/api.lua"
 --Load configuration

@@ -25,12 +25,6 @@ dofile(modpath..'/warps/config.txt')
 
 --Warp checker function
 local function costwarp(name, param)
-	if param == nil or param == "" or warps_list[param] == nil or warps_list[param] == "" then
-		msg = "Warps:\n"
-		se.show_warps()
-		
-	return
-	else
 		local player = minetest.env:get_player_by_name(name)
 		
 		--Check if Cost_to_warp is enabled in config.
@@ -74,11 +68,10 @@ local function costwarp(name, param)
 		--If Cost_to_warp is set to false, warp the player.
 		warp(name, param)
 		end
-	end
 end
 
 --Set warp function
-function setwarp(name, param)
+local function setwarp(name, param)
 warps_list=load_warps_list()
 local desc = ""
 local wname = ""
@@ -115,7 +108,6 @@ end
 function warp(name, param)
 warps_list=load_warps_list()
 		--Check to see if warp exists. If so, teleport player
-		
 			if warps_list[param] ~= nil then
 				local player = minetest.env:get_player_by_name(name)
 				minetest.chat_send_player(name, 'Warping to location...')
@@ -125,7 +117,7 @@ warps_list=load_warps_list()
 end
 
 --Delete warp function
-function delwarp(name, param)
+local function delwarp(name, param)
 warps_list=load_warps_list()
 	--If no warp is specified, notify player
 	if param == nil or param == "" then
@@ -148,8 +140,7 @@ warps_list=load_warps_list()
 	end
 end
 
-se = {}
-function se.show_warps()
+local function show_warps(name)
 	warps_list=load_warps_list()
 	if Warp_GUI == true then
 		local int = 0
@@ -184,8 +175,19 @@ end)
 --Register Commands
 minetest.register_chatcommand('warp',{
 	description = 'Warp to location',
+	params = "<warpname> | name of warp",
 	privs = {se_warps = true},
-	func = costwarp
+	func = function(name, param)
+	warps_list = load_warps_list()
+	if param == nil or param == "" or not warps_list[param] then
+		msg = "Warps:\n"
+		show_warps(name)
+		
+	return
+	else
+	costwarp(name, param)
+	end
+end
 })
 
 minetest.register_chatcommand('setwarp',{

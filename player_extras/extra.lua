@@ -1,4 +1,3 @@
-local filespath = minetest.get_modpath(minetest.get_current_modname()) .. "/playerdata"
 local configpath = minetest.get_modpath(minetest.get_current_modname()) .. "/player_extras/config.txt"
 dofile(configpath)
 

@@ -1,6 +1,6 @@
 local path = minetest.get_modpath(minetest.get_current_modname())
 
-local version = "0.1"
+local version = "0.5"
 local enabled_mods = {}
 dofile(path.."/config.txt")
 dofile(path.."/api.lua")
