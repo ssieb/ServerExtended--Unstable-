@@ -3,34 +3,44 @@
 ----------------------------------------------------
 ----------------------------------------------------
 
+--User Variables (Advanced, use for other options below.  You can add luacode here too.)
+--Example:
+--ServerName = "MyNewServer"
+
+
+----------------------------------------------------
+
 
 --Enabled Modules:
 
-Ranks = true
+Ranks_Module = true
 --Allows players to be granted priveleges based on time and manual promotions by admins.
 
-TeleportRequest = true
+TeleportRequest_Module = true
 --Allows players to request permission to teleport to other players.
 
-Homes = true
+Homes_Module = true
 --Allows players to set homes and teleport back to them with configurable prices or consequences
 
-Warps = true
+Warps_Module = true
 --Allows players with permission to teleport to admin-specified places.
 
-GUI = false
+GUI_Module = false
 --Player profile, setting, and other cool features, all in a user-friendly GUI. 
 --WIP-- Keep disabled for now unless you are helping test.
 
-Economy = false
+Economy_Module = false
 --Basic economy system. 
 --WIP-- Keep disabled for now unless you are helping test.
 
-Player_Extras = true
+Player_Extras_Module = true
 --Small helper commands for players.
 
-Admin_Tools = true
+Admin_Tools_Module = true
 --Small helper commands for admins.
+
+
+----------------------------------------------------
 
 
 --Other options:
@@ -43,12 +53,12 @@ Use_Announcer = true
 
 	--Announcer options (If Use_Announcer = true)
 	
-	Announcer_Delay_Time = "2"
+	Announcer_Delay_Time = "45"
 	--Delay between announcing messages
 
-	Announcer_Messages = "[ServerExtended] Welcome to [SERVERNAME], This is the default Announcer Loop, Ask your server owner to change these., Announcer_Message in config.txt."
+	Announcer_Messages = "[ServerExtended] Welcome to [SERVERNAME], [ServerExtended] This is the default Announcer Loop, [ServerExtended] Ask your server owner to change these., [ServerExtended] Variable: Announcer_Message in config.txt."
 	--Messages for the announcer to cycle through. Seperate messages by commas.
 
 
 --Module specific configuration options can be found in the module folders /config.txt.
---Thanks for using ServerExtended!
+--Thanks for using ServerExtended by Traxie21!

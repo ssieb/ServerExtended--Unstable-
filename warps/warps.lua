@@ -8,7 +8,7 @@ function save_warps_list()
 	end
 end
 
-local function load_warps_list()
+function load_warps_list()
 	local file = io.open(minetest.get_worldpath() .. "/warpslist.txt", "r")
 	if file then
 		local table = minetest.deserialize(file:read("*all"))
@@ -24,7 +24,7 @@ warps_list=load_warps_list()
 dofile(modpath..'/warps/config.txt')
 
 --Warp checker function
-local function costwarp(name, param)
+function costwarp(name, param)
 		local player = minetest.env:get_player_by_name(name)
 		
 		--Check if Cost_to_warp is enabled in config.
@@ -140,7 +140,7 @@ warps_list=load_warps_list()
 	end
 end
 
-local function show_warps(name)
+function show_warps(name)
 	warps_list=load_warps_list()
 	if Warp_GUI == true then
 		local int = 0
@@ -148,7 +148,6 @@ local function show_warps(name)
 		for k,v in pairs(warps_list) do
 			local size = k:len() / 4
 			k = tostring(k)
-			print(tostring(warps_list[k]["desc"]))
 			value = value.."button_exit[0,"..tostring(int)..";"..size..",3;"..tostring(k)..";"..tostring(k).."]label[4,"..tostring(int+1)..";"..tostring(warps_list[k]["desc"]).."]"
 			int = int+1
 		end

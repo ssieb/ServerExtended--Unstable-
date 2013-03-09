@@ -1,10 +1,15 @@
 local path = minetest.get_modpath(minetest.get_current_modname())
 --Set path variables.
-local filespath = minetest.get_modpath(minetest.get_current_modname()) .. "/playerdata"
+local api = minetest.get_modpath(minetest.get_current_modname()) .. "/api.lua"
 local configpath = minetest.get_modpath(minetest.get_current_modname()) .. "/ranks/config.txt"
+local mainconfig = minetest.get_modpath(minetest.get_current_modname()) .. "/config.txt"
 
 --Load Configuration variables
 dofile(configpath)
+dofile(mainconfig)
+
+dofile(api)
+playerdata = load_player_data()
 se = {}
 
 if Show_On_Start == true then
@@ -14,34 +19,94 @@ if Show_On_Start == true then
 	end)
 end
 
-function se.show_profile(player)
-local pdata = minetest.env:get_player_by_name(player)
-		local profile = "size[15,10]"..
-			"label[0,0;"..name.."'s Profile:]"..
+function se.show_profile(player, mode)
+playerdata = load_player_data()
+if not playerdata[player]['status'] then
+print("test")
+playerdata[player]['status'] = "Default Status"
+playerdata[player]['location'] = "Default Location"
+playerdata[player]['about_me'] = "New Player"
+save_player_data()
+playerdata = load_player_data()
+end
+local profile = ""
+	local pdata = minetest.env:get_player_by_name(player)
+	if not info then info = "" end
+	if mode == "Edit" then
+		profile = "size[15,10]"..
+			"label[0,0;"..player.."'s Profile:]"..
 			"image_button[0,0.6;3,3;serverextended_avatar_av1.png;Avatar; ]"..
-			"button[3,0;2,2;Messaging;Messaging]"..
-			"button[5,0;2,2;Friends;Friends]"..
-			"button[7,0;2,2;Server;Server]"..
-			"button[9,0;2,2;Go_Home;Go Home]"..
-			"button[11,0;2,2;Warp;Warp]"..
-			"button[13,0;2,2;Settings;Settings]"..
-			"button[13,0;2,2;Settings;Settings]"..
+			"button[13,0;2,2;Save;Save]"..
 			"label[0,4;Location:]"..
-			"label[0,4.3;LOCATION]"..
-			"label[0,5;Join date:]"..
-			"label[0,5.3;"..os.date("%d.%m.%Y").."]"..
-			"label[0,6;Status:]"..
-			"label[0,6.3;Working on ServerExtended]"..
-			"label[0,7;Current Position:]"..
-			"label[0,7.3;"..dump(pdata:getpos())..":]"..
-			"label[3,1.3;About Me:]"..
-			"label[3,1.7;WEARHIWERAKEWKKKKKKKKKKKKKKKKKAWWWWWWWWWWWWWWWWW]"
+			"field[0.3,5.1;3,0;location;;"..playerdata[player]['location'].."]"..
+			"label[0,5;Status:]"..
+			"field[0.3,6.1;3,0;status;;"..playerdata[player]['status'].."]"..
+			"label[0,6;Join date:]"..
+			"label[0,6.3;"..playerdata[player]['join_date'].."]"..
+			"label[3,2.3;About Me:]"..
+			"field[3.2,1.7;8,4;aboutme;;"..playerdata[player]['about_me'].."]"
+	else
+		profile = "size[15,10]"..
+			"label[0,0;"..player.."'s Profile:]"..
+			"image_button[0,0.6;3,3;serverextended_avatar_av1.png;Avatar; ]"..
+			"button[3,9;2,2;Messaging;Messaging]"..
+			"button[5,9;2,2;Friends;Friends]"..
+			"button[7,9;2,2;Server;Server]"..
+			"button[9,9;2,2;Go_Home;Go Home]"..
+			"button[11,9;2,2;Warp;Warp]"..
+			"button[13,9;2,2;Settings;Settings]"..
+			"label[0,4;Location:]"..
+			"label[0,4.3;"..playerdata[player]['location'].."]"..
+			"label[0,5;Status:]"..
+			"label[0,5.3;"..playerdata[player]['status'].."]"..
+			"label[0,6;Join date:]"..
+			"label[0,6.3;"..playerdata[player]['join_date'].."]"..
+			"label[3,0;Info Bar: "..info.."]"..
+			"label[3,0.5;About Me:]"..
+			"label[3,0.8;"..playerdata[player]['about_me'].."]"
 
+	end
+	if Ranks == true then
+			profile = profile.."label[0,7;Rank:]".."label[0,7.3;"..playerdata[player]['rank'].."]"
+	end
 		minetest.show_formspec(player, "profile", profile)
 end
 
+minetest.register_on_player_receive_fields(function(player, formname, fields)
+		if formname == "profile" then
+				if fields.Settings == "Settings" then
+					name = player:get_player_name()
+					se.show_profile(name, "Edit")
+				end
+				if fields.Save == "Save" then
+					name = player:get_player_name()
+					playerdata[name]['location'] = tostring(fields.location)
+					playerdata[name]['status'] = tostring(fields.status)
+					playerdata[name]['about_me'] = tostring(fields.aboutme)
+					save_player_data()
+					playerdata = load_player_data()
+					local info = "Settings saved!"
+					se.show_profile(name, "default")
+				end
+				if fields.Warp == "Warp" then
+					name = player:get_player_name()
+					show_warps(name)
+				end
+		end
+end)
+
 minetest.register_chatcommand('profile',{
 	description = 'Show your profile',
+    params = "<playername> | Playername of profile you are accessing.",
 	privs = {},
-	func = se.show_profile
+	func = function(name, param)
+		playerdata = load_player_data()
+		if param == nil or param == "" or not playerdata[param] then
+			local player = name
+			se.show_profile(player, "default")
+		else
+			local player = param
+			se.show_profile(player, "default")
+		end
+	end
 })

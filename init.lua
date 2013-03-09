@@ -5,56 +5,56 @@ local enabled_mods = {}
 dofile(path.."/config.txt")
 dofile(path.."/api.lua")
 
-if Ranks == true then
+if Ranks_Module == true then
 
 	dofile(path .."/ranks/ranks.lua")
 	table.insert(enabled_mods, "Ranks Module Loaded")
 	
 end
 
-if TeleportRequest == true then
+if TeleportRequest_Module == true then
 
 	dofile(path .."/tpr/tpr.lua")
 	table.insert(enabled_mods, "TeleportRequest Module Loaded")
 
 end
 
-if Homes == true then
+if Homes_Module == true then
 
 	dofile(path .."/homes/homes.lua")
 	table.insert(enabled_mods, "Homes Module Loaded")
 
 end
 
-if Warps == true then
+if Warps_Module == true then
 
 	dofile(path .."/warps/warps.lua")
 	table.insert(enabled_mods, "Warps Module Loaded")
 
 end
 
-if Economy == true then
+if Economy_Module == true then
 
 	dofile(path .."/economy/economy.lua")
 	table.insert(enabled_mods, "Economy Module Loaded")
 
 end
 
-if Player_Extras == true then
+if Player_Extras_Module == true then
 
 	dofile(path .."/player_extras/extra.lua")
 	table.insert(enabled_mods, "Player Extras Commands Module Loaded")
 
 end
 
-if Admin_Tools == true then
+if Admin_Tools_Module == true then
 
 	dofile(path .."/admin_tools/tools.lua")
 	table.insert(enabled_mods, "Admin Tools Commands Module Loaded")
 
 end
 
-if GUI == true then
+if GUI_Module == true then
 
 	dofile(path .."/gui/gui.lua")
 	table.insert(enabled_mods, "Gui Module Loaded")
@@ -80,9 +80,10 @@ minetest.register_privilege("se_warps", "Permission to use /warp.")
 minetest.register_on_joinplayer(function(player)
 	pname = player:get_player_name()
 	playerdata = load_player_data()
-	if not playerdata[pname] then
+	if not playerdata[pname] or not playerdata[pname]['join_date'] then
 		playerdata[pname] = {}
 		playerdata[pname]['isPlayer'] = true
+		playerdata[pname]['join_date'] = os.date("%d.%m.%Y")
 		save_player_data()
 		playerdata = load_player_data()
 	end
@@ -97,12 +98,9 @@ if Use_Announcer == true then
 local int = 1
 	function announce()
 		Current_String = string.split(Announcer_Messages, ",")
-		print(dump(Current_String))
 		minetest.after(Announcer_Delay_Time, function()
 			if Current_String[int] then
 				minetest.chat_send_all(Current_String[int])
-				print(Current_String[int])
-				print(int)
 				int = int+1
 				announce()
 			else

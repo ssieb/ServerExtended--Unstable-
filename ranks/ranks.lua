@@ -11,7 +11,6 @@ dofile(configpath)
 function set_privs(pname, rank)
 if Ranks[rank] then
 	local privstring = Ranks[rank]["privs"]
-		print(privstring)
 	
 		--Check for valid privstring
 		if type(privstring) == "string" then
@@ -73,11 +72,12 @@ minetest.register_chatcommand('setrank',{
 		minetest.chat_send_player(name, "Please enter a name and rank!")
 	elseif not playerdata[pname] then
 		minetest.chat_send_player(name, "Invalid player name")
-	elseif not Ranks[rank] then
+	elseif not Ranks[rankname] then
 		minetest.chat_send_player(name, "There is no rank by that name. Type /ranks to see all available ranks.")
 	else
 		set_rank(pname, rankname)
 		set_privs(pname, rankname)
+		minetest.chat_send_player(name, "Rank "..rankname.." set for "..pname..".")
 	end
 end
 })
