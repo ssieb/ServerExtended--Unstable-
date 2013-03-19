@@ -1,7 +1,5 @@
 --Set path variables.
-local configpath = minetest.get_modpath(minetest.get_current_modname()) .. "/ranks/config.txt"
-local api = minetest.get_modpath(minetest.get_current_modname()) .. "/api.lua"
-dofile(api)
+local configpath = minetest.get_modpath(minetest.get_current_modname()) .. "/config.txt"
 
 playerdata = load_player_data()
 --Load Configuration variables
@@ -196,3 +194,4 @@ minetest.register_chatcommand('ranks',{
 	end
 end
 })
+

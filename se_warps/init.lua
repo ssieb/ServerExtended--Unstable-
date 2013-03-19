@@ -21,7 +21,7 @@ end
 
 warps_list=load_warps_list()
 --Load configuration
-dofile(modpath..'/warps/config.txt')
+dofile(modpath..'/config.txt')
 
 --Warp checker function
 function costwarp(name, param)

@@ -1,6 +1,6 @@
 --Set path variables
 local filespath = minetest.get_modpath(minetest.get_current_modname()) .. "/playerdata"
-local configpath = minetest.get_modpath(minetest.get_current_modname()) .. "/admin_tools/config.txt"
+local configpath = minetest.get_modpath(minetest.get_current_modname()) .. "/config.txt"
 
 --Load Configuration
 dofile(configpath)

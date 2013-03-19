@@ -1,9 +1,7 @@
 --Set path variables.
 local modpath = minetest.get_modpath(minetest.get_current_modname())
-local api = minetest.get_modpath(minetest.get_current_modname()) .. "/api.lua"
 --Load configuration
-dofile(modpath..'/homes/config.txt')
-dofile(api)
+dofile(modpath..'/config.txt')
 playerdata = load_player_data()
 
 --Sethome checker function

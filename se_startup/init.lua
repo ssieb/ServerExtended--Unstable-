@@ -3,60 +3,51 @@ local path = minetest.get_modpath(minetest.get_current_modname())
 local version = "0.5"
 local enabled_mods = {}
 dofile(path.."/config.txt")
-dofile(path.."/api.lua")
 
 if Ranks_Module == true then
 
-	dofile(path .."/ranks/ranks.lua")
 	table.insert(enabled_mods, "Ranks Module Loaded")
 	
 end
 
 if TeleportRequest_Module == true then
 
-	dofile(path .."/tpr/tpr.lua")
 	table.insert(enabled_mods, "TeleportRequest Module Loaded")
 
 end
 
 if Homes_Module == true then
 
-	dofile(path .."/homes/homes.lua")
 	table.insert(enabled_mods, "Homes Module Loaded")
 
 end
 
 if Warps_Module == true then
 
-	dofile(path .."/warps/warps.lua")
 	table.insert(enabled_mods, "Warps Module Loaded")
 
 end
 
 if Economy_Module == true then
 
-	dofile(path .."/economy/economy.lua")
 	table.insert(enabled_mods, "Economy Module Loaded")
 
 end
 
 if Player_Extras_Module == true then
 
-	dofile(path .."/player_extras/extra.lua")
 	table.insert(enabled_mods, "Player Extras Commands Module Loaded")
 
 end
 
 if Admin_Tools_Module == true then
 
-	dofile(path .."/admin_tools/tools.lua")
 	table.insert(enabled_mods, "Admin Tools Commands Module Loaded")
 
 end
 
 if GUI_Module == true then
 
-	dofile(path .."/gui/gui.lua")
 	table.insert(enabled_mods, "Gui Module Loaded")
 
 end

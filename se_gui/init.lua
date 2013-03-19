@@ -1,23 +1,12 @@
 local path = minetest.get_modpath(minetest.get_current_modname())
 --Set path variables.
-local api = minetest.get_modpath(minetest.get_current_modname()) .. "/api.lua"
-local configpath = minetest.get_modpath(minetest.get_current_modname()) .. "/ranks/config.txt"
 local mainconfig = minetest.get_modpath(minetest.get_current_modname()) .. "/config.txt"
 
 --Load Configuration variables
-dofile(configpath)
 dofile(mainconfig)
 
-dofile(api)
 playerdata = load_player_data()
 se = {}
-
-if Show_On_Start == true then
-	minetest.register_on_joinplayer(function(player)
-	se.show_profile()
-	print(tostring(player))
-	end)
-end
 
 function se.show_profile(player, mode)
 playerdata = load_player_data()

@@ -25,7 +25,7 @@ Homes_Module = true
 Warps_Module = true
 --Allows players with permission to teleport to admin-specified places.
 
-GUI_Module = false
+GUI_Module = true
 --Player profile, setting, and other cool features, all in a user-friendly GUI. 
 --WIP-- Keep disabled for now unless you are helping test.
 
@@ -56,7 +56,7 @@ Use_Announcer = true
 	Announcer_Delay_Time = "45"
 	--Delay between announcing messages
 
-	Announcer_Messages = "[ServerExtended] Welcome to [SERVERNAME], [ServerExtended] This is the default Announcer Loop, [ServerExtended] Ask your server owner to change these., [ServerExtended] Variable: Announcer_Message in config.txt."
+	Announcer_Messages = "[ServerExtended] Welcome to [SERVERNAME],[ServerExtended] This is the default Announcer Loop,[ServerExtended] Ask your server owner to change these.,[ServerExtended] Variable: Announcer_Message in config.txt."
 	--Messages for the announcer to cycle through. Seperate messages by commas.
 
 

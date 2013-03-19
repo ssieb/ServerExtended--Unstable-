@@ -1,5 +1,8 @@
-local configpath = minetest.get_modpath(minetest.get_current_modname()) .. "/player_extras/config.txt"
+local configpath = minetest.get_modpath(minetest.get_current_modname()) .. "/config.txt"
 dofile(configpath)
+
+
+playerdata = load_player_data()
 
 --Make /spawn go to a spawnpoint set by admins if it exists.
 minetest.register_chatcommand("spawn", {
@@ -135,3 +138,40 @@ minetest.register_chatcommand("reply", {
 })
 
 end
+
+minetest.register_chatcommand('info',{
+	description = 'View player info.',
+    privs = {se_player=true},
+	params = "<player> Name of player",
+	func = function(name, param)
+	playerdata = se.load_player_data()
+	if param == nil or param == "" then
+		minetest.chat_send_player(name, "Type /info [playername] to view [playername]'s information.")
+	elseif not playerdata[param] then
+		minetest.chat_send_player(name, "There is no player by that name. Type /players to see all registered players.")
+		return false
+	else
+		local list = param.."'s Information\n"
+		playerdata = se.load_player_data()
+		for k,v in pairs(playerdata[param]) do
+		list = list..k..": "..tostring(v).."\n"
+		end
+		minetest.chat_send_player(name, list)
+	end
+end
+})
+
+minetest.register_chatcommand('players',{
+	description = 'View player list.',
+    privs = {se_player=true},
+	params = "",
+	func = function(name)
+	local list = "List of all registered players:\n"
+	playerdata = se.load_player_data()
+	for k,v in pairs(playerdata) do
+	list = list..k.."\n"
+	end
+		minetest.chat_send_player(name, list)
+
+end
+})

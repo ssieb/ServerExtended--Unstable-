@@ -1,4 +1,4 @@
-dofile(minetest.get_modpath(minetest.get_current_modname()).."/tpr/config.txt")
+dofile(minetest.get_modpath(minetest.get_current_modname()).."/config.txt")
 
 --DO NOT CHANGE:
 

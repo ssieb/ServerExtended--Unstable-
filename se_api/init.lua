@@ -1,4 +1,6 @@
 filepath = minetest.get_worldpath()
+se = {}
+
 function save_player_data()
 	local file = io.open(filepath .. "/playerdata.txt", "w")
 	file:write(minetest.serialize(playerdata))
