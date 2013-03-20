@@ -59,6 +59,9 @@ Use_Announcer = true
 	Announcer_Messages = "[ServerExtended] Welcome to [SERVERNAME],[ServerExtended] This is the default Announcer Loop,[ServerExtended] Ask your server owner to change these.,[ServerExtended] Variable: Announcer_Message in config.txt."
 	--Messages for the announcer to cycle through. Seperate messages by commas.
 
+Chat_String = "[&r] &n: &m"
+--Formatted chat string, this is experimental and looks a bit strange on the sender's client.
+--Possible values: false, "<string>". &r will be replaced with the user's rank, &n with his name, and &m with the message.
 
 --Module specific configuration options can be found in the module folders /config.txt.
 --Thanks for using ServerExtended by Traxie21!

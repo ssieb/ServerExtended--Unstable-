@@ -103,3 +103,15 @@ local int = 1
 		announce()
 
 end
+
+if type(Chat_String) == "string" then
+minetest.register_on_chat_message(function(name, message)
+	playerdata = load_player_data()
+	local chatmessage = string.gsub(Chat_String, "(&m)", message)
+	chatmessage = string.gsub(chatmessage, "(&r)", playerdata[name]['rank'])
+	chatmessage = string.gsub(chatmessage, "(&n)", name)
+	minetest.chat_send_all(chatmessage)
+	return true
+end)
+
+end
