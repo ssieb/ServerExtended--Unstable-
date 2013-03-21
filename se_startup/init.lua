@@ -67,6 +67,7 @@ minetest.register_privilege("se_homes", "Permission to use /sethome and /home")
 minetest.register_privilege("se_tpr", "Permission to request teleport to other players.")
 minetest.register_privilege("se_tphr", "Permission to request other players to teleport to you.")
 minetest.register_privilege("se_warps", "Permission to use /warp.")
+minetest.register_privilege("se_nick", "Permission to use /nick.")
 
 minetest.register_on_joinplayer(function(player)
 	pname = player:get_player_name()
@@ -107,9 +108,16 @@ end
 if type(Chat_String) == "string" then
 minetest.register_on_chat_message(function(name, message)
 	playerdata = load_player_data()
-	local chatmessage = string.gsub(Chat_String, "(&m)", message)
-	chatmessage = string.gsub(chatmessage, "(&r)", playerdata[name]['rank'])
-	chatmessage = string.gsub(chatmessage, "(&n)", name)
+	local chatmessage = string.gsub(Chat_String, "(&message)", message)
+	chatmessage = string.gsub(chatmessage, "(&rank)", tostring(playerdata[name]['rank']))
+	chatmessage = string.gsub(chatmessage, "(&dname)", name)
+	if playerdata[name]['nick'] then
+	chatmessage = string.gsub(chatmessage, "(&nick)", "~"..tostring(playerdata[name]['nick']))
+	chatmessage = string.gsub(chatmessage, "(&name)", "~"..tostring(playerdata[name]['nick']))
+	else
+	chatmessage = string.gsub(chatmessage, "(&nick)", '')
+	chatmessage = string.gsub(chatmessage, "(&name)", name)
+	end
 	minetest.chat_send_all(chatmessage)
 	return true
 end)

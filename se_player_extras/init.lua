@@ -144,7 +144,7 @@ minetest.register_chatcommand('info',{
     privs = {se_player=true},
 	params = "<player> Name of player",
 	func = function(name, param)
-	playerdata = se.load_player_data()
+	playerdata = load_player_data()
 	if param == nil or param == "" then
 		minetest.chat_send_player(name, "Type /info [playername] to view [playername]'s information.")
 	elseif not playerdata[param] then
@@ -152,7 +152,7 @@ minetest.register_chatcommand('info',{
 		return false
 	else
 		local list = param.."'s Information\n"
-		playerdata = se.load_player_data()
+		playerdata = load_player_data()
 		for k,v in pairs(playerdata[param]) do
 		list = list..k..": "..tostring(v).."\n"
 		end
@@ -167,11 +167,49 @@ minetest.register_chatcommand('players',{
 	params = "",
 	func = function(name)
 	local list = "List of all registered players:\n"
-	playerdata = se.load_player_data()
+	playerdata = load_player_data()
 	for k,v in pairs(playerdata) do
 	list = list..k.."\n"
 	end
 		minetest.chat_send_player(name, list)
+
+end
+})
+
+minetest.register_chatcommand('nick',{
+	description = 'Set the nick for a player.',
+    privs = {se_nick=true},
+	params = "<playername>",
+	func = function(name, param)
+	if param == nil or param == "" then
+		if playerdata[name]['nick'] then
+			playerdata[name]['nick'] = nil
+			save_player_data()
+			minetest.chat_send_player(name, "Nickname removed.")
+		else
+			minetest.chat_send_player(name, "Please enter a valid name and nickname! /nick [name] [nickname]")
+		end
+	else
+		local pname, nick = string.match(param, "([^ ]+) (.+)")
+		print(tostring(pname)..": "..tostring(nick))
+		playerdata = load_player_data()
+		if nick == nil then
+		nick = param
+		playerdata[name]['nick'] = nick
+		save_player_data()
+		minetest.chat_send_player(name, "Your nickname has been changed to "..nick..".")
+		return
+	else
+		if playerdata[pname] then
+			playerdata[pname]['nick'] = nick
+			save_player_data()
+			minetest.chat_send_player(name, "Nickname: "..nick.." Set for player "..pname..".")
+		else
+			minetest.chat_send_player(name, "That name does not exist.\nType /players for a list of all players registered on this server.")
+			return false
+		end
+	end
+end
 
 end
 })
