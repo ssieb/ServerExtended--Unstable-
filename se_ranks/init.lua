@@ -172,6 +172,7 @@ minetest.register_chatcommand('updateranks',{
 	params = "",
 	func = function(name)
 		dofile(configpath)
+		minetest.chat_send_player(name, "Ranks list updated!")
 	end
 })
 

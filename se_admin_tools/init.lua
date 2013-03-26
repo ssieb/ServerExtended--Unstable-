@@ -203,6 +203,24 @@ minetest.register_chatcommand('clearinv',{
 	privs = {se_clearinventory=true},
 	func = clearinventory
 })
+
+minetest.register_chatcommand('tp',{
+	description = 'Teleport to a player',
+	params = "<playername> | name of player to teleport to.",
+	privs = {se_clearinventory=true},
+	func = function(name, param)
+		if param == nil then
+			minetest.chat_send_player(name, "Please specify a player to teleport to!")
+		elseif minetest.env:get_player_by_name(param) then
+				local target = minetest.env:get_player_by_name(param)
+				local sender = minetest.env:get_player_by_name(name)
+				sender:setpos(target:getpos())
+				minetest.chat_send_player(name, "Teleported to "..param..".")
+		else
+			minetest.chat_send_player(name, "That player is not online.")
+		end
+	end
+})
 minetest.register_privilege("se_clearinventory", "Permission to use /clearinventory to clear your inventory.")
 
 minetest.register_privilege("se_clearinventory_admin", "Permission to use /clearinventory to clear your inventory.")

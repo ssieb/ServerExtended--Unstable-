@@ -200,7 +200,12 @@ minetest.register_chatcommand('nick',{
 		minetest.chat_send_player(name, "Your nickname has been changed to "..nick..".")
 		return
 	else
-		if playerdata[pname] then
+		if nick == "reset" and playerdata[pname] then
+			playerdata[pname]['nick'] = nil
+			save_player_data()
+			minetest.chat_send_player(pname, "Your nickname has been removed.")
+			minetest.chat_send_player(name, pname.."'s nickname removed.")
+		elseif playerdata[pname] and nick ~= "clear" then
 			playerdata[pname]['nick'] = nick
 			save_player_data()
 			minetest.chat_send_player(name, "Nickname: "..nick.." Set for player "..pname..".")

@@ -8,7 +8,7 @@ dofile(mainconfig)
 playerdata = load_player_data()
 se = {}
 
-function se.show_profile(player, mode)
+function se.show_profile(player, mode, sender)
 playerdata = load_player_data()
 if not playerdata[player]['status'] then
 print("test")
@@ -33,7 +33,9 @@ local profile = ""
 			"label[0,6;Join date:]"..
 			"label[0,6.3;"..playerdata[player]['join_date'].."]"..
 			"label[3,2.3;About Me:]"..
-			"field[3.2,1.7;8,4;aboutme;;"..playerdata[player]['about_me'].."]"
+			"field[3.2,1.7;8,4;aboutme;;"..playerdata[player]['about_me'].."]"..
+			"field[223.2,1.7;8,4;name;;"..player.."]"
+
 	else
 		profile = "size[15,10]"..
 			"label[0,0;"..player.."'s Profile:]"..
@@ -52,33 +54,40 @@ local profile = ""
 			"label[0,6.3;"..playerdata[player]['join_date'].."]"..
 			"label[3,0;Info Bar: "..info.."]"..
 			"label[3,0.5;About Me:]"..
-			"label[3,0.8;"..playerdata[player]['about_me'].."]"
+			"label[3,0.8;"..playerdata[player]['about_me'].."]"..
+			"field[223.2,1.7;8,4;name;;"..player.."]"
+
 
 	end
 	if Ranks == true then
 			profile = profile.."label[0,7;Rank:]".."label[0,7.3;"..playerdata[player]['rank'].."]"
 	end
-		minetest.show_formspec(player, "profile", profile)
+		minetest.show_formspec(sender, "profile", profile)
 end
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 		if formname == "profile" then
-				if fields.Settings == "Settings" then
+				local target = nil
+				if fields.name ~= player:get_player_name() then
+					target = fields.name
 					name = player:get_player_name()
-					se.show_profile(name, "Edit")
+				else
+					target = player:get_player_name()
+					name = player:get_player_name()
+				end
+				if fields.Settings == "Settings" then
+					se.show_profile(name, "Edit", target)
 				end
 				if fields.Save == "Save" then
-					name = player:get_player_name()
 					playerdata[name]['location'] = tostring(fields.location)
 					playerdata[name]['status'] = tostring(fields.status)
 					playerdata[name]['about_me'] = tostring(fields.aboutme)
 					save_player_data()
 					playerdata = load_player_data()
 					local info = "Settings saved!"
-					se.show_profile(name, "default")
+					se.show_profile(name, "default", target)
 				end
 				if fields.Warp == "Warp" then
-					name = player:get_player_name()
 					show_warps(name)
 				end
 		end
@@ -92,10 +101,10 @@ minetest.register_chatcommand('profile',{
 		playerdata = load_player_data()
 		if param == nil or param == "" or not playerdata[param] then
 			local player = name
-			se.show_profile(player, "default")
+			se.show_profile(player, "default", name)
 		else
 			local player = param
-			se.show_profile(player, "default")
+			se.show_profile(player, "default", name)
 		end
 	end
 })
