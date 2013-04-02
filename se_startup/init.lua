@@ -123,3 +123,31 @@ minetest.register_on_chat_message(function(name, message)
 end)
 
 end
+
+minetest.register_chatcommand('restart',{
+	description = 'Restart the Server.',
+	privs = {se_admin = true},
+	func = function(name, param)
+	local rtime = nil
+	if param == nil or param == "" then
+		rtime = 20
+	elseif(param:find("%D+")) then
+		rtime = 20
+	else 
+		rtime = tonumber(param)
+	end
+	minetest.chat_send_all(name.." is restarting the server!")
+	local i = rtime
+	local function timer()
+		if i < 1 then 
+			minetest.chat_send_all("Server Restarting")
+			minetest.request_shutdown()
+		else
+			i = i-1
+			minetest.chat_send_all("Restarting in: "..i)
+			minetest.after(1.0, timer)
+		end
+	end
+	timer()
+end
+})

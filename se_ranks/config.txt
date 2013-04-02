@@ -17,7 +17,7 @@ Default_Rank = "Players"
 Ranks = {
 
 	Admins = { 
-		privs = "shout, se_admin, se_player, se_tpr, se_tphr, se_homes, se_warps, se_clearinventory, se_clearinventory_admin interact, se_nick, break, basic_privs, grant, fast, fly, ",
+		privs = "shout, se_admin, se_player, se_tpr, se_tphr, se_homes, se_warps, se_clearinventory, se_clearinventory_admin, interact, se_nick, se_god, se_heal, se_tp, se_time, break, basic_privs, grant, fast, fly, ",
 		ranklevel = 3
 	
 	},

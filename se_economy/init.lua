@@ -68,3 +68,16 @@ end
 
 
 minetest.register_privilege("se_economy", "Permission to use economy commands and system.")
+
+
+minetest.register_node("se_economy:showcase", {
+	description = "Showcase",
+	tiles = {"default_grass.png", "default_dirt.png", "default_dirt.png^default_grass_side.png"},
+	is_ground_content = true,
+	groups = {crumbly=3},
+	drop = 'se_economy:showcase',
+	on_place = function(itemstack, placer, pointed_thing)
+		minetest.env:add_item({x=pointed_thing.under.x, y=pointed_thing.under.y+1, z=pointed_thing.under.z}, "se_economy:showcase")
+		minetest.env:add_node(pointed_thing.under, "se_economy:showcase")
+	end
+})
