@@ -146,7 +146,7 @@ file = "modpack.txt"
 dir = "/"
 add_file(url, file, dir)
 
-url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_gui/serverextended_avatar_av1.png"
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_gui/textures/serverextended_avatar_av1.png"
 file = "serverextended_avatar_av1.png"
 dir = "/se_gui/textures/"
 add_file(url, file, dir)
