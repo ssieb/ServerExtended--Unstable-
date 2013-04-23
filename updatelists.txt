@@ -1,0 +1,9 @@
+local url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_api/init.lua"
+local file = "init.lua"
+local dir = "/se_api/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_startup/init.lua"
+file = "init.lua"
+dir = "/se_startup/"
+add_file(url, file, dir)
