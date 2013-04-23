@@ -141,7 +141,4 @@ dir = "/se_player_extras/"
 add_file(url, file, dir)
 
 ------------------EXTRAS-----------------
-url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/modpack.txt"
-file = "modpack.txt"
-dir = "/"
-add_file(url, file, dir)
+
