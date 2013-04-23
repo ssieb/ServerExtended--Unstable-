@@ -1,9 +1,141 @@
-local url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_api/init.lua"
-local file = "init.lua"
-local dir = "/se_api/"
+local url, file, dir = ""
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_api/init.lua"
+file = "init.lua"
+dir = "/se_api/"
 add_file(url, file, dir)
 
 url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_startup/init.lua"
 file = "init.lua"
 dir = "/se_startup/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_ranks/init.lua"
+file = "init.lua"
+dir = "/se_ranks/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_homes/init.lua"
+file = "init.lua"
+dir = "/se_homes/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_warps/init.lua"
+file = "init.lua"
+dir = "/se_warps/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_tpr/init.lua"
+file = "init.lua"
+dir = "/se_tpr/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_gui/init.lua"
+file = "init.lua"
+dir = "/se_gui/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_admin_tools/init.lua"
+file = "init.lua"
+dir = "/se_admin_tools/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_player_extras/init.lua"
+file = "init.lua"
+dir = "/se_player_extras/"
+add_file(url, file, dir)
+
+------------------CONFIGS-----------------
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_api/config.txt"
+file = "config.txt"
+dir = "/se_api/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_startup/config.txt"
+file = "config.txt"
+dir = "/se_startup/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_ranks/config.txt"
+file = "config.txt"
+dir = "/se_ranks/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_homes/config.txt"
+file = "config.txt"
+dir = "/se_homes/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_warps/config.txt"
+file = "config.txt"
+dir = "/se_warps/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_tpr/config.txt"
+file = "config.txt"
+dir = "/se_tpr/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_gui/config.txt"
+file = "config.txt"
+dir = "/se_gui/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_admin_tools/config.txt"
+file = "config.txt"
+dir = "/se_admin_tools/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_player_extras/config.txt"
+file = "config.txt"
+dir = "/se_player_extras/"
+add_file(url, file, dir)
+
+
+------------------DEPENDS-----------------
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_api/depends.txt"
+file = "depends.txt"
+dir = "/se_api/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_startup/depends.txt"
+file = "depends.txt"
+dir = "/se_startup/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_ranks/depends.txt"
+file = "depends.txt"
+dir = "/se_ranks/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_homes/depends.txt"
+file = "depends.txt"
+dir = "/se_homes/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_warps/depends.txt"
+file = "depends.txt"
+dir = "/se_warps/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_tpr/depends.txt"
+file = "depends.txt"
+dir = "/se_tpr/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_gui/depends.txt"
+file = "depends.txt"
+dir = "/se_gui/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_admin_tools/depends.txt"
+file = "depends.txt"
+dir = "/se_admin_tools/"
+add_file(url, file, dir)
+
+url = "https://raw.github.com/Traxie21/ServerExtended--Unstable-/master/se_player_extras/depends.txt"
+file = "depends.txt"
+dir = "/se_player_extras/"
 add_file(url, file, dir)
