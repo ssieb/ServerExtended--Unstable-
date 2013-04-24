@@ -55,6 +55,9 @@ minetest.register_on_joinplayer(function(player)
 		save_player_data()
 		playerdata = load_player_data()
 		set_privs(pname, Default_Rank)
+	else
+		playerdata = load_player_data()
+		set_privs(pname, playerdata[pname]['rank'])
 	end
 	
 end)
