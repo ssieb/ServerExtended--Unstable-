@@ -70,7 +70,7 @@ minetest.register_privilege("se_warps", "Permission to use /warp.")
 minetest.register_privilege("se_nick", "Permission to use /nick.")
 
 minetest.register_on_joinplayer(function(player)
-	pname = player:get_player_name()
+	local pname = player:get_player_name()
 	playerdata = load_player_data()
 	if not playerdata[pname] or not playerdata[pname]['join_date'] then
 		playerdata[pname] = {}
@@ -82,7 +82,7 @@ minetest.register_on_joinplayer(function(player)
 end)
 
 minetest.register_on_newplayer(function(player)
-	pname = player:get_player_name()
+	local pname = player:get_player_name()
 	minetest.chat_send_all(pname, Welcome_String..pname..',')
 end)
 

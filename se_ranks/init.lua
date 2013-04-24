@@ -39,10 +39,12 @@ end
 
 minetest.register_on_newplayer(function(player)
 	local pname = player:get_player_name()
+	if not playerdata[pname] then
 	playerdata[pname] = {}
 	save_player_data(playerdata)
 	playerdata = load_player_data()
 	set_privs(pname, Default_Rank)
+	end
 end)
 
 --When any player joins the server:
