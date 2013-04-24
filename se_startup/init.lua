@@ -68,6 +68,13 @@ minetest.register_privilege("se_tpr", "Permission to request teleport to other p
 minetest.register_privilege("se_tphr", "Permission to request other players to teleport to you.")
 minetest.register_privilege("se_warps", "Permission to use /warp.")
 minetest.register_privilege("se_nick", "Permission to use /nick.")
+minetest.register_privilege("se_god", "Permission to use /god.")
+minetest.register_privilege("se_heal", "Permission to use /heal.")
+minetest.register_privilege("se_teleport", "Permission to use /tp.")
+minetest.register_privilege("se_time", "Permission to use time commands.")
+
+
+
 
 minetest.register_on_joinplayer(function(player)
 	local pname = player:get_player_name()

@@ -11,7 +11,7 @@ local pname = nil
 minetest.register_chatcommand('god',{
 	description = 'Never die.',
 	params = "<playername>",
-	privs = {se_admin = true},
+	privs = {se_god = true},
 	func = function(name, param)
 		if param == nil or param == "" or minetest.env:get_player_by_name(param) == nil or minetest.env:get_player_by_name(param) == "" then
 		
@@ -56,7 +56,7 @@ end)
 --Heal command
 minetest.register_chatcommand('heal',{
 	description = 'Restore full health to anyone.',
-	privs = {se_admin = true},
+	privs = {se_heal = true},
 	func = function(name, param)
 	
 	--Check if sender wants to heal someone other than himself
@@ -84,7 +84,7 @@ end
 --Time commands. I won't document these. Figure them out yourself :P
 minetest.register_chatcommand("morning",{
 	params = "",
-	privs = {se_admin = true},
+	privs = {se_time = true},
 	description = "Set time to morning",
 	func = function(name, param)
 		local player = minetest.env:get_player_by_name(name)
@@ -96,7 +96,7 @@ minetest.register_chatcommand("morning",{
 })
 minetest.register_chatcommand("noon",{
 	params = "",
-	privs = {se_admin = true},
+	privs = {se_time = true},
 	description = "Set time to noon",
 	func = function(name, param)
 		local player = minetest.env:get_player_by_name(name)
@@ -108,7 +108,7 @@ minetest.register_chatcommand("noon",{
 })
 minetest.register_chatcommand("evening",{
 	params = "",
-	privs = {se_admin = true},
+	privs = {se_time = true},
 	description = "Set time to evening",
 	func = function(name, param)
 		local player = minetest.env:get_player_by_name(name)
@@ -120,7 +120,7 @@ minetest.register_chatcommand("evening",{
 })
 minetest.register_chatcommand("night",{
 	params = "",
-	privs = {se_admin = true},
+	privs = {se_time = true},
 	description = "Set time to night",
 	func = function(name, param)
 		local player = minetest.env:get_player_by_name(name)
@@ -207,7 +207,7 @@ minetest.register_chatcommand('clearinv',{
 minetest.register_chatcommand('tp',{
 	description = 'Teleport to a player',
 	params = "<playername> | name of player to teleport to.",
-	privs = {se_clearinventory=true},
+	privs = {se_teleport=true},
 	func = function(name, param)
 		if param == nil then
 			minetest.chat_send_player(name, "Please specify a player to teleport to!")
