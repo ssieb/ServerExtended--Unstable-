@@ -64,8 +64,6 @@ give_to_singleplayer = false}
 )
 minetest.register_privilege("se_player", "Player extra permissions")
 minetest.register_privilege("se_homes", "Permission to use /sethome and /home")
-minetest.register_privilege("se_tpr", "Permission to request teleport to other players.")
-minetest.register_privilege("se_tphr", "Permission to request other players to teleport to you.")
 minetest.register_privilege("se_warps", "Permission to use /warp.")
 minetest.register_privilege("se_nick", "Permission to use /nick.")
 minetest.register_privilege("se_god", "Permission to use /god.")
